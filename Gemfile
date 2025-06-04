@@ -36,6 +36,9 @@ gem "bootsnap", require: false
 gem 'cancancan'
 gem 'carrierwave', '~> 3.0'
 
+gem "ratonvirus"
+gem "ratonvirus-clamby"
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri mswin mswin64 mingw x64_mingw ], require: "debug/prelude"
