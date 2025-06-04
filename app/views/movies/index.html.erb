@@ -8,9 +8,13 @@
   <% @movies.each do |movie| %>
     <%= render movie %>
     <p>
-      <%= link_to "Show this movie", movie %>
+      <%# if can? :read, movie %>
+        <%= link_to "Show this movie", movie %>
+      <%# end %>
     </p>
   <% end %>
 </div>
 
-<%= link_to "New movie", new_movie_path %>
+<%# if can? :create, Post %>
+  <%= link_to "New movie", new_movie_path %>
+<%# end %>
