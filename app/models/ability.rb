@@ -4,12 +4,14 @@ class Ability
   include CanCan::Ability
 
   def initialize(user)
+    can :read, Movie
+
     return if user.blank?
 
     if user.admin?
       can :manage, :all
     else
-      can :read, Movie
+      can :manage, User, id: user.id
     end
   end
 end

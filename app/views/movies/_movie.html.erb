@@ -1,27 +1,12 @@
-<div id="<%= dom_id movie %>">
-  <p>
-    <strong>Title:</strong>
-    <%= movie.title %>
-  </p>
-
-  <p>
-    <strong>Category:</strong>
-    <%= movie.category %>
-  </p>
-
-  <p>
-    <strong>Description:</strong>
-    <%= movie.description %>
-  </p>
-
-  <p>
-    <strong>Year:</strong>
-    <%= movie.year %>
-  </p>
-
-  <p>
-    <strong>Image:</strong>
-    <%= movie.image %>
-  </p>
-
+<div class="card" style="width: 18rem;" id="<%= dom_id movie %>">
+  <% if movie.image.present? %>
+    <%= image_tag movie.image, alt: movie.title, class: 'card-img-top' %>
+  <% end %>
+  <div class="card-body">
+    <h5 class="card-title"><%= movie.title %>(<%= movie.year %>) - <%= movie.category %> </h5>
+    <p class="card-text">
+      <strong>Description:</strong>
+      <%= raw movie.description %> <!-- TODO  UNSAFE -->
+    </p>
+  </div>
 </div>

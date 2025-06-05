@@ -1,20 +1,20 @@
-<p style="color: green"><%= notice %></p>
-
 <% content_for :title, "Movies" %>
 
 <h1>Movies</h1>
 
-<div id="movies">
+<div id="movies" class="row align-items-center">
   <% @movies.each do |movie| %>
-    <%= render movie %>
-    <p>
-      <%# if can? :read, movie %>
+    <div class="col-auto">
+      <%= render movie %>
+      <p>
+        <%# if can? :read, movie %>
         <%= link_to "Show this movie", movie %>
-      <%# end %>
-    </p>
+        <%# end %>
+      </p>
+    </div>
   <% end %>
 </div>
 
 <%# if can? :create, Post %>
-  <%= link_to "New movie", new_movie_path %>
+<%= link_to "New movie", new_movie_path, class: 'btn btn-info' %>
 <%# end %>
