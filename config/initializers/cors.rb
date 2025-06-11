@@ -1,22 +1,24 @@
 # config/initializers/cors.rb
 
 Rails.application.config.middleware.insert_before 0, Rack::Cors do
+  ### 1️⃣ Public API (/external/api/*) - accessible by anyone
   allow do
-    # Origins allowed to make requests (change to your frontend domains)
-    origins "https://your-frontend-domain.com", "http://localhost:3000"
+    origins "*"  # Allow requests from any origin (public)
 
-    resource "*",
-             headers: :any,                     # Allow all headers
-             methods: [ :get, :post, :put, :patch, :delete, :options, :head ], # Allowed HTTP methods
-             credentials: true,                 # Allow cookies/auth headers (useful with Devise session)
-             expose: [ "Authorization" ]          # Expose headers like Authorization to the client (JWT tokens, for example)
+    resource "/external/api/*",
+             headers: :any,
+             methods: [ :get, :post, :options, :head ], # Customize methods if needed
+             expose: [ "Authorization" ]                # Expose headers if using tokens
   end
 
-  # Example of allowing public API access from anywhere
-  # allow do
-  #   origins '*'
-  #   resource '/public_api/*',
-  #     headers: :any,
-  #     methods: [:get, :options]
-  # end
+  ### 2️⃣ Internal API (/internal/api/*) - restricted to specific trusted origins
+  allow do
+    origins "https://trusted-internal-site.com", "https://another-trusted-site.com"
+
+    resource "/internal/api/*",
+             headers: :any,
+             methods: [ :get, :post, :put, :patch, :delete, :options, :head ],
+             expose: [ "Authorization" ],                # Expose headers if using tokens
+             credentials: true                       # Required if using cookies/sessions/auth
+  end
 end
