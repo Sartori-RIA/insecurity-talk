@@ -40,6 +40,7 @@ gem "jquery-rails"
 gem "sassc-rails"
 
 gem 'rack-attack'
+gem 'rack-cors'
 
 gem 'faker'
 
