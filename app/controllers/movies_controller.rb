@@ -4,8 +4,8 @@ class MoviesController < ApplicationController
 
   def index
     @movies = Movie.all
-    @movies = Movie.where("title = #{params[:q]}") if params[:q].present? # TODO UNSAFE
-    # @movies = Movie.where("title = ?", params[:q1]) if params[:q1].present? # TODO SAFE
+    @movies = Movie.where("title = '#{params[:q]}'") if params[:q].present? # TODO UNSAFE
+    @movies = Movie.where("title = ?", params[:q1]) if params[:q1].present? # TODO SAFE
     # @movies = Movie.where(title: params[:q2]) if params[:q2].present? # TODO SAFE
   end
 
