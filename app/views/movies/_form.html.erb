@@ -33,7 +33,7 @@
 
   <div>
     <%= form.label :image, style: "display: block" %>
-    <%= form.file_field :image %>
+    <%= form.file_field :image, accept: Movie::ALLOWED_FILE_TYPES.join(',') %>
   </div>
 
   <div>

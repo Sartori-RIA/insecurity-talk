@@ -24,7 +24,7 @@ class Rack::Attack
   end
 
   ### 5. Custom response for throttled requests
-  self.blocklisted_response = lambda do |env|
+  self.blocklisted_responder = lambda do |env|
     [
       429, # Too Many Requests
       { "Content-Type" => "application/json" },

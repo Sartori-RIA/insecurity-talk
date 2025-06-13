@@ -3,7 +3,7 @@ class MoviesController < ApplicationController
   before_action :set_movie, only: %i[ show edit update destroy ]
 
   def index
-    @movies = Movie.all
+    @movies = Movie.all.order(updated_at: :desc)
     @movies = Movie.where("title = '#{params[:q]}'") if params[:q].present? # TODO UNSAFE
     @movies = Movie.where("title = ?", params[:q1]) if params[:q1].present? # TODO SAFE
     # @movies = Movie.where(title: params[:q2]) if params[:q2].present? # TODO SAFE
@@ -18,8 +18,16 @@ class MoviesController < ApplicationController
   def edit; end
 
   def create
-    @movie = Movie.new(params[:movie].permit!) # TODO UNSAFE
-    # @movie = Movie.new(movie_params) # TODO SAFE
+    # @movie = Movie.new(params[:movie].permit!) # TODO UNSAFE
+
+
+    # UNSAFE file uploader
+    # uploaded = params.to_h.dig(:movie, :image)
+    # path = Rails.root.join("public/uploads/#{uploaded.original_filename}")
+    # File.open(path, "wb") { |f| f.write(uploaded.read) }
+    # render json: { status: "uploaded", url: "/uploads/#{uploaded.original_filename}" }
+
+    @movie = Movie.new(movie_params) # TODO SAFE
 
     respond_to do |format|
       if @movie.save
