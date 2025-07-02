@@ -2,6 +2,10 @@
 
 <h1>Users</h1>
 
+<% if can? :create, User %>
+  <%= link_to "New user", new_user_path %>
+<% end %>
+
 <div id="users">
   <% @users.each do |user| %>
     <%= render user %>
@@ -10,5 +14,3 @@
     </p>
   <% end %>
 </div>
-
-<%= link_to "New user", new_user_path %>

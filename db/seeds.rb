@@ -22,5 +22,5 @@ end
       .find_or_create_by(email: Faker::Internet.unique.email)
 end
 
-User.create_with(name: "Admin", password: "12345678")
+User.create_with(name: "Admin", password: "12345678", role: :admin)
     .find_or_create_by(email: "admin@email.com")

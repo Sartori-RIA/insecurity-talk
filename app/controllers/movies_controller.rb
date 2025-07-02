@@ -1,12 +1,12 @@
 class MoviesController < ApplicationController
-  # load_and_authorize_resource
+  load_and_authorize_resource
   before_action :set_movie, only: %i[ show edit update destroy ]
 
   def index
     @movies = Movie.all.order(updated_at: :desc)
-    @movies = Movie.where("title = '#{params[:q]}'") if params[:q].present? # TODO UNSAFE
-    @movies = Movie.where("title = ?", params[:q1]) if params[:q1].present? # TODO SAFE
-    # @movies = Movie.where(title: params[:q2]) if params[:q2].present? # TODO SAFE
+    # @movies = Movie.where("title = '#{params[:q]}'") if params[:q].present? # TODO UNSAFE
+    # @movies = Movie.where("title = ?", params[:q1]) if params[:q1].present? # TODO SAFE
+    @movies = Movie.where(title: params[:q2]) if params[:q2].present? # TODO SAFE
   end
 
   def show; end
@@ -64,8 +64,8 @@ class MoviesController < ApplicationController
   private
 
   def set_movie
-    @movie = Movie.find_by!("id = #{params[:id]}") # insecure
-    # @movie = Movie.find(params[:id]) # safe
+    # @movie = Movie.find_by!("id = #{params[:id]}") # insecure
+    @movie = Movie.find(params[:id]) # safe
   end
 
   def movie_params
