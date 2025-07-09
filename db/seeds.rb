@@ -17,6 +17,11 @@ genres = "Action", "Comedy", "Drama", "Horror"
 
 end
 
+Movie.create(title: "XSS",
+             category: genres.sample,
+             description: "<script>alert('potato')</script>",
+             year: 2020)
+
 10.times do
   User.create_with(password: Faker::Internet.password, name: Faker::Name.unique.name)
       .find_or_create_by(email: Faker::Internet.unique.email)

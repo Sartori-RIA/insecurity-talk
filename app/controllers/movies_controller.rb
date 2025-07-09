@@ -4,9 +4,9 @@ class MoviesController < ApplicationController
 
   def index
     @movies = Movie.all.order(updated_at: :desc)
-    # @movies = Movie.where("title = '#{params[:q]}'") if params[:q].present? # TODO UNSAFE
-    # @movies = Movie.where("title = ?", params[:q1]) if params[:q1].present? # TODO SAFE
-    @movies = Movie.where(title: params[:q2]) if params[:q2].present? # TODO SAFE
+    @movies = Movie.where("title = '#{params[:q]}'") if params[:q].present? # TODO UNSAFE
+    # @movies = Movie.where("title = ?", params[:q]) if params[:q].present? # TODO SAFE
+    # @movies = Movie.where(title: params[:q]) if params[:q].present? # TODO SAFE
   end
 
   def show; end
@@ -18,7 +18,7 @@ class MoviesController < ApplicationController
   def edit; end
 
   def create
-    # @movie = Movie.new(params[:movie].permit!) # TODO UNSAFE
+    @movie = Movie.new(params[:movie].permit!) # TODO UNSAFE
 
 
     # UNSAFE file uploader
@@ -27,7 +27,7 @@ class MoviesController < ApplicationController
     # File.open(path, "wb") { |f| f.write(uploaded.read) }
     # render json: { status: "uploaded", url: "/uploads/#{uploaded.original_filename}" }
 
-    @movie = Movie.new(movie_params) # TODO SAFE
+    # @movie = Movie.new(movie_params) # TODO SAFE
 
     respond_to do |format|
       if @movie.save
@@ -64,8 +64,8 @@ class MoviesController < ApplicationController
   private
 
   def set_movie
-    # @movie = Movie.find_by!("id = #{params[:id]}") # insecure
-    @movie = Movie.find(params[:id]) # safe
+    @movie = Movie.find_by!("id = #{params[:id]}") # insecure
+    # @movie = Movie.find(params[:id]) # safe
   end
 
   def movie_params
