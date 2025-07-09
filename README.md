@@ -1,24 +1,16 @@
-# README
+# Insecurity Talk
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Project create for tech talk on BallastLane about security on rails projects
 
-Things you may want to cover:
+* Ruby version: 3.1.0
 
-* Ruby version
++ PostgreSQL: 16
 
-* System dependencies
++ Setup:
+  + change database credentials on `config/database.yml`
+  + rails db:create
+  + rails db:migrate
+  + rails db:seed
+  + rails serve
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
++ Presentation: [insecure-rails-app.pdf](./insecure-rails-app.pdf)
