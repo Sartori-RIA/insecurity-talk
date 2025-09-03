@@ -187,7 +187,9 @@ GEM
     parser (3.3.8.0)
       ast (~> 2.4.1)
       racc
-    pg (1.4.6)
+    pg (1.6.2-aarch64-linux)
+    pg (1.6.2-arm64-darwin)
+    pg (1.6.2-x86_64-linux)
     popper_js (2.11.8)
     pp (0.6.2)
       prettyprint
@@ -361,7 +363,7 @@ DEPENDENCIES
   importmap-rails
   jbuilder
   jquery-rails
-  pg (~> 1.4.6)
+  pg (~> 1.6.2)
   puma (>= 5.0)
   rack-attack
   rack-cors
